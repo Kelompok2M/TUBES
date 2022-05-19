@@ -1,0 +1,771 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+package tugas.design.form;
+
+import java.text.NumberFormat;
+import java.util.Locale;
+import javax.swing.event.DocumentEvent;
+import javax.swing.table.DefaultTableModel;
+
+/**
+ *
+ * @author I Made Mahardika D
+ */
+public class MenuPOS extends javax.swing.JFrame {
+
+    /**
+     * Creates new form MenuPOS
+     */
+
+    NumberFormat nf = NumberFormat.getInstance(new Locale("in", "ID"));
+
+    public MenuPOS() {
+        initComponents();
+        KodeBarang();
+        Total();
+        Diskon();
+    }
+
+    private void Diskon(){
+        txt_perc.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent arg0){
+                int disc, hasil_disc;
+                disc = Integer.parseInt(txt_totalhrg.getText().replace(".", "")) * Integer.parseInt(txt_perc.getText().replace("", "")) / 100;
+                hasil_disc = Integer.parseInt(txt_totalhrg.getText().replace(".",""))
+                - disc;
+
+            txt_nilai_perc.setText(nf.format(disc));
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent arg0){
+
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent arg0){
+
+            }
+
+        });
+
+
+    }
+
+
+    private void Total(){
+        txt_qty.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
+        @Override
+        public void insertUpdate(DocumentEvent arg0){
+        try{
+            int hasil = 0;
+            if(txt_qty.getText().equals("")){
+                hasil = Integer.parseInt(txt_hrgbrg.getText().replace(".", "")) * 0;
+            }else{
+                hasil = Integer.parseInt(txt_hrgbrg.getText().replace(".", "")) *
+                        Integer.parseInt(txt_qty.getText());
+            }
+            txt_jmlhrg.setText(nf.format(hasil));
+        }catch (Exception e){
+        }    
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent arg0) {
+        try{
+            int hasil = 0;
+            if(txt_qty.getText().equals("")){
+                hasil = Integer.parseInt(txt_hrgbrg.getText().replace(".", "")) * 0;
+            }else{
+                hasil = Integer.parseInt(txt_hrgbrg.getText().replace(".", "")) *
+                        Integer.parseInt(txt_qty.getText());
+            }
+            txt_jmlhrg.setText(nf.format(hasil));
+        }catch (Exception e){
+        }
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent arg0) {
+        try{
+            int hasil = 0;
+            if(txt_qty.getText().equals("")){
+                hasil = Integer.parseInt(txt_hrgbrg.getText().replace(".", "")) * 0;
+            }else{
+                hasil = Integer.parseInt(txt_hrgbrg.getText().replace(".", "")) *
+                        Integer.parseInt(txt_qty.getText());
+            }
+            txt_jmlhrg.setText(nf.format(hasil));
+        }catch (Exception e){
+        }
+        }
+
+        });
+
+
+
+
+
+
+    }
+
+    private void KodeBarang(){
+        txt_kdbrg.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+        @Override
+        public void insertUpdate(DocumentEvent arg0){
+            String KodeBarang;
+            KodeBarang = (String) txt_kdbrg.getText();
+
+            switch(KodeBarang){
+                case "BR0001":
+                    txt_nmbrg.setText("Aqua Botol 600ml");
+                    txt_hrgbrg.setText(nf.format(3000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0002":
+                    txt_nmbrg.setText("Aqua Botol 1500ml");
+                    txt_hrgbrg.setText(nf.format(7000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0003":
+                    txt_nmbrg.setText("Fruit Tea All Var 500ml ");
+                    txt_hrgbrg.setText(nf.format(7000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0004":
+                    txt_nmbrg.setText("Susu Kedelai Naraya");
+                    txt_hrgbrg.setText(nf.format(6000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0005":
+                    txt_nmbrg.setText("Teh Kotak");
+                    txt_hrgbrg.setText(nf.format(4000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0006":
+                    txt_nmbrg.setText("Teh Pucuk 350ml");
+                    txt_hrgbrg.setText(nf.format(4000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0007":
+                    txt_nmbrg.setText("Pocari Sweat 350ml");
+                    txt_hrgbrg.setText(nf.format(7000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0008":
+                    txt_nmbrg.setText("Fanta All Var 390ml");
+                    txt_hrgbrg.setText(nf.format(5000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0009":
+                    txt_nmbrg.setText("Coca Cola 390ml");
+                    txt_hrgbrg.setText(nf.format(5000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0010":
+                    txt_nmbrg.setText("Sprite 390ml");
+                    txt_hrgbrg.setText(nf.format(5000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0011":
+                    txt_nmbrg.setText("Chitato 68gr");
+                    txt_hrgbrg.setText(nf.format(9000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0012":
+                    txt_nmbrg.setText("Walens Soes All Var");
+                    txt_hrgbrg.setText(nf.format(10000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0013":
+                    txt_nmbrg.setText("Keripik Kentang");
+                    txt_hrgbrg.setText(nf.format(5000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0014":
+                    txt_nmbrg.setText("Keripik Tempe");
+                    txt_hrgbrg.setText(nf.format(5000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0015":
+                    txt_nmbrg.setText("Oreo Wafer");
+                    txt_hrgbrg.setText(nf.format(8000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0016":
+                    txt_nmbrg.setText("Nabati Wafer All Var");
+                    txt_hrgbrg.setText(nf.format(8000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0017":
+                    txt_nmbrg.setText("Silverqueen ukuran kecil");
+                    txt_hrgbrg.setText(nf.format(12000));
+                    txt_qty.grabFocus();
+                    break;  
+                case "BR0018":
+                    txt_nmbrg.setText("Silverqueen ukuran besar");
+                    txt_hrgbrg.setText(nf.format(22000));
+                    txt_qty.grabFocus();
+                    break;
+                default:
+                    txt_nmbrg.setText("");
+                    txt_hrgbrg.setText("");
+                }                
+            }
+
+        @Override
+        public void removeUpdate(DocumentEvent arg0) {
+            String KodeBarang;
+            KodeBarang = (String) txt_kdbrg.getText();
+
+            switch(KodeBarang){
+                case "BR0001":
+                    txt_nmbrg.setText("Aqua Botol 600ml");
+                    txt_hrgbrg.setText(nf.format(3000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0002":
+                    txt_nmbrg.setText("Aqua Botol 1500ml");
+                    txt_hrgbrg.setText(nf.format(7000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0003":
+                    txt_nmbrg.setText("Fruit Tea All Var 500ml ");
+                    txt_hrgbrg.setText(nf.format(7000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0004":
+                    txt_nmbrg.setText("Susu Kedelai Naraya");
+                    txt_hrgbrg.setText(nf.format(6000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0005":
+                    txt_nmbrg.setText("Teh Kotak");
+                    txt_hrgbrg.setText(nf.format(4000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0006":
+                    txt_nmbrg.setText("Teh Pucuk 350ml");
+                    txt_hrgbrg.setText(nf.format(4000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0007":
+                    txt_nmbrg.setText("Pocari Sweat 350ml");
+                    txt_hrgbrg.setText(nf.format(7000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0008":
+                    txt_nmbrg.setText("Fanta All Var 390ml");
+                    txt_hrgbrg.setText(nf.format(5000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0009":
+                    txt_nmbrg.setText("Coca Cola 390ml");
+                    txt_hrgbrg.setText(nf.format(5000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0010":
+                    txt_nmbrg.setText("Sprite 390ml");
+                    txt_hrgbrg.setText(nf.format(5000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0011":
+                    txt_nmbrg.setText("Chitato 68gr");
+                    txt_hrgbrg.setText(nf.format(9000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0012":
+                    txt_nmbrg.setText("Walens Soes All Var");
+                    txt_hrgbrg.setText(nf.format(10000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0013":
+                    txt_nmbrg.setText("Keripik Kentang");
+                    txt_hrgbrg.setText(nf.format(5000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0014":
+                    txt_nmbrg.setText("Keripik Tempe");
+                    txt_hrgbrg.setText(nf.format(5000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0015":
+                    txt_nmbrg.setText("Oreo Wafer");
+                    txt_hrgbrg.setText(nf.format(8000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0016":
+                    txt_nmbrg.setText("Nabati Wafer All Var");
+                    txt_hrgbrg.setText(nf.format(8000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0017":
+                    txt_nmbrg.setText("Silverqueen ukuran kecil");
+                    txt_hrgbrg.setText(nf.format(12000));
+                    txt_qty.grabFocus();
+                    break;  
+                case "BR0018":
+                    txt_nmbrg.setText("Silverqueen ukuran besar");
+                    txt_hrgbrg.setText(nf.format(22000));
+                    txt_qty.grabFocus();
+                    break;
+                default:
+                    txt_nmbrg.setText("");
+                    txt_hrgbrg.setText("");
+                }
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent arg0) {
+            String KodeBarang;
+            KodeBarang = (String) txt_kdbrg.getText();
+
+            switch(KodeBarang){
+                case "BR0001":
+                    txt_nmbrg.setText("Aqua Botol 600ml");
+                    txt_hrgbrg.setText(nf.format(3000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0002":
+                    txt_nmbrg.setText("Aqua Botol 1500ml");
+                    txt_hrgbrg.setText(nf.format(7000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0003":
+                    txt_nmbrg.setText("Fruit Tea All Var 500ml ");
+                    txt_hrgbrg.setText(nf.format(7000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0004":
+                    txt_nmbrg.setText("Susu Kedelai Naraya");
+                    txt_hrgbrg.setText(nf.format(6000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0005":
+                    txt_nmbrg.setText("Teh Kotak");
+                    txt_hrgbrg.setText(nf.format(4000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0006":
+                    txt_nmbrg.setText("Teh Pucuk 350ml");
+                    txt_hrgbrg.setText(nf.format(4000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0007":
+                    txt_nmbrg.setText("Pocari Sweat 350ml");
+                    txt_hrgbrg.setText(nf.format(7000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0008":
+                    txt_nmbrg.setText("Fanta All Var 390ml");
+                    txt_hrgbrg.setText(nf.format(5000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0009":
+                    txt_nmbrg.setText("Coca Cola 390ml");
+                    txt_hrgbrg.setText(nf.format(5000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0010":
+                    txt_nmbrg.setText("Sprite 390ml");
+                    txt_hrgbrg.setText(nf.format(5000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0011":
+                    txt_nmbrg.setText("Chitato 68gr");
+                    txt_hrgbrg.setText(nf.format(9000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0012":
+                    txt_nmbrg.setText("Walens Soes All Var");
+                    txt_hrgbrg.setText(nf.format(10000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0013":
+                    txt_nmbrg.setText("Keripik Kentang");
+                    txt_hrgbrg.setText(nf.format(5000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0014":
+                    txt_nmbrg.setText("Keripik Tempe");
+                    txt_hrgbrg.setText(nf.format(5000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0015":
+                    txt_nmbrg.setText("Oreo Wafer");
+                    txt_hrgbrg.setText(nf.format(8000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0016":
+                    txt_nmbrg.setText("Nabati Wafer All Var");
+                    txt_hrgbrg.setText(nf.format(8000));
+                    txt_qty.grabFocus();
+                    break;
+                case "BR0017":
+                    txt_nmbrg.setText("Silverqueen ukuran kecil");
+                    txt_hrgbrg.setText(nf.format(12000));
+                    txt_qty.grabFocus();
+                    break;  
+                case "BR0018":
+                    txt_nmbrg.setText("Silverqueen ukuran besar");
+                    txt_hrgbrg.setText(nf.format(22000));
+                    txt_qty.grabFocus();
+                    break;
+                default:
+                    txt_nmbrg.setText("");
+                    txt_hrgbrg.setText("");
+                }
+        }
+
+        });
+
+
+
+    }
+
+
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        header1 = new javax.swing.JLabel();
+        header2 = new javax.swing.JLabel();
+        lbl_total_harga = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        kd_brg = new javax.swing.JLabel();
+        txt_kdbrg = new javax.swing.JTextField();
+        nm_brg = new javax.swing.JLabel();
+        txt_nmbrg = new javax.swing.JTextField();
+        hrg_brg = new javax.swing.JLabel();
+        txt_hrgbrg = new javax.swing.JTextField();
+        qty = new javax.swing.JLabel();
+        txt_qty = new javax.swing.JTextField();
+        jml_hrg = new javax.swing.JLabel();
+        txt_jmlhrg = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbl_list = new javax.swing.JTable();
+        lbl_item = new javax.swing.JLabel();
+        lbl_nilai_item = new javax.swing.JLabel();
+        lbl_disc = new javax.swing.JLabel();
+        lbl_jmlharga = new javax.swing.JLabel();
+        txt_perc = new javax.swing.JTextField();
+        txt_nilai_perc = new javax.swing.JTextField();
+        txt_totalhrg = new javax.swing.JTextField();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(204, 0, 0));
+
+        header1.setFont(new java.awt.Font("Moonrising", 0, 24)); // NOI18N
+        header1.setForeground(new java.awt.Color(255, 255, 255));
+        header1.setText("APLIKASI KASIR-KU");
+
+        header2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        header2.setForeground(new java.awt.Color(255, 255, 255));
+        header2.setText("Menu POS Kasir");
+
+        lbl_total_harga.setFont(new java.awt.Font("Calculator", 1, 48)); // NOI18N
+        lbl_total_harga.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_total_harga.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbl_total_harga.setText("Rp.");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(header2)
+                    .addComponent(header1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbl_total_harga, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_total_harga)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(header1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(header2)))
+                .addGap(16, 16, 16))
+        );
+
+        jPanel2.setBackground(new java.awt.Color(255, 204, 0));
+
+        kd_brg.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        kd_brg.setText("Kode Barang");
+
+        nm_brg.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        nm_brg.setText("Nama Barang");
+
+        hrg_brg.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        hrg_brg.setText("Harga Barang");
+
+        qty.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        qty.setText("Quantity");
+
+        txt_qty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_qtyActionPerformed(evt);
+            }
+        });
+
+        jml_hrg.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jml_hrg.setText("Jumlah Harga");
+
+        tbl_list.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "No", "Kode Barang", "Nama Barang", "Harga Barang", "Quantity", "Jumlah Harga"
+            }
+        ));
+        jScrollPane1.setViewportView(tbl_list);
+
+        lbl_item.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        lbl_item.setText("Jumlah Item yang Dibeli:");
+
+        lbl_nilai_item.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        lbl_nilai_item.setText("0");
+
+        lbl_disc.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        lbl_disc.setText("Diskon %");
+
+        lbl_jmlharga.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        lbl_jmlharga.setText("Total Harga");
+
+        txt_perc.setText("\n");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbl_jmlharga)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(lbl_item)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbl_nilai_item)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 448, Short.MAX_VALUE)
+                                .addComponent(lbl_disc)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(txt_perc, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_nilai_perc, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_totalhrg)))
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(hrg_brg)
+                    .addComponent(nm_brg)
+                    .addComponent(kd_brg)
+                    .addComponent(qty, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jml_hrg, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txt_kdbrg)
+                    .addComponent(txt_nmbrg)
+                    .addComponent(txt_hrgbrg)
+                    .addComponent(txt_qty)
+                    .addComponent(txt_jmlhrg, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(kd_brg)
+                    .addComponent(txt_kdbrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nm_brg)
+                    .addComponent(txt_nmbrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(hrg_brg)
+                    .addComponent(txt_hrgbrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(qty)
+                    .addComponent(txt_qty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jml_hrg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_jmlhrg))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                .addGap(7, 7, 7)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_item)
+                    .addComponent(lbl_nilai_item)
+                    .addComponent(lbl_disc)
+                    .addComponent(txt_perc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_nilai_perc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_jmlharga)
+                    .addComponent(txt_totalhrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>                        
+
+    private void txt_qtyActionPerformed(java.awt.event.ActionEvent evt) {                                        
+        // TODO add your handling code here:
+        if(txt_qty.getText().equals("")){
+            return;
+        }else{
+            DefaultTableModel model = (DefaultTableModel) tbl_list.getModel();
+            Object obj[] = new Object[6];
+            obj[1] = txt_kdbrg.getText();
+            obj[2] = txt_nmbrg.getText();
+            obj[3] = txt_hrgbrg.getText();
+            obj[4] = txt_qty.getText();
+            obj[5] = txt_jmlhrg.getText();
+
+            model.addRow(obj);
+            int baris = model.getRowCount();
+            for(int x=0; x<baris; x++){
+                String no = String.valueOf(x+1);
+                model.setValueAt(no + ".", x, 0);
+            }
+            tbl_list.setRowHeight(30);
+            lbl_nilai_item.setText(String.valueOf(baris));
+            jmlTotalHarga();
+            bersih();
+        }
+    }                                       
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(MenuPOS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(MenuPOS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(MenuPOS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(MenuPOS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MenuPOS().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify                     
+    private javax.swing.JLabel header1;
+    private javax.swing.JLabel header2;
+    private javax.swing.JLabel hrg_brg;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jml_hrg;
+    private javax.swing.JLabel kd_brg;
+    private javax.swing.JLabel lbl_disc;
+    private javax.swing.JLabel lbl_item;
+    private javax.swing.JLabel lbl_jmlharga;
+    private javax.swing.JLabel lbl_nilai_item;
+    private javax.swing.JLabel lbl_total_harga;
+    private javax.swing.JLabel nm_brg;
+    private javax.swing.JLabel qty;
+    private javax.swing.JTable tbl_list;
+    private javax.swing.JTextField txt_hrgbrg;
+    private javax.swing.JTextField txt_jmlhrg;
+    private javax.swing.JTextField txt_kdbrg;
+    private javax.swing.JTextField txt_nilai_perc;
+    private javax.swing.JTextField txt_nmbrg;
+    private javax.swing.JTextField txt_perc;
+    private javax.swing.JTextField txt_qty;
+    private javax.swing.JTextField txt_totalhrg;
+    // End of variables declaration                   
+
+    private void jmlTotalHarga() {
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+        int subtotal = 0;
+        for(int x=0; x<tbl_list.getRowCount(); x++){
+            subtotal += Integer.parseInt((String) 
+                    tbl_list.getValueAt(x, 5).toString().replace(".", ""));
+        }
+        txt_totalhrg.setText("Rp." + nf.format(subtotal));
+        lbl_total_harga.setText("Rp." + nf.format(subtotal));
+
+        //discount
+
+    }
+
+    private void bersih() {
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        txt_kdbrg.setText("");
+        txt_kdbrg.grabFocus();
+        txt_qty.setText("");
+        txt_jmlhrg.setText("");
+    }
+}
